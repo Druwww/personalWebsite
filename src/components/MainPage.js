@@ -15,7 +15,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -23,12 +22,17 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import { mainListItems, secondaryListItems } from './ListItems';
 
+import { useSelector } from 'react-redux'
+import {
+    selectMainTab
+} from '../reducers/mainTabReducer'
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        quentinmulliez.com
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -119,6 +123,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
+
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -127,6 +132,8 @@ export default function Dashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+  const mainTab = useSelector(selectMainTab);
 
   return (
     <div className={classes.root}>
@@ -173,7 +180,7 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-                coucou
+                {mainTab.page}
           </Grid>
           <Box pt={4}>
             <Copyright />

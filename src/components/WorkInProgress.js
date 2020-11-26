@@ -14,7 +14,7 @@ import construction from '../images/underConstruction.gif'
 const useStyles = makeStyles((theme) => ({
     root: {
         margin: 'auto',
-        width: '70%',
+        width: '100%',
     },
     media: {
         height: '100%',
@@ -35,7 +35,7 @@ function WorkInProgress() {
                         className={classes.media}
                         component="img"
                         alt="Contemplative Reptile"
-                        height="500"
+                        height="1000"
                         image={construction}
                         title="Contemplative Reptile"
                     />

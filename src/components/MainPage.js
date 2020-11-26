@@ -20,12 +20,18 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
-import { mainListItems, secondaryListItems } from './ListItems';
+import { MainListItems, SecondaryListItems } from './ListItems';
 
 import { useSelector } from 'react-redux'
 import {
     selectMainTab
 } from '../reducers/mainTabReducer'
+import Overview from './Overview';
+import Experiences from './Experiences';
+import Formations from './Formations';
+import Skills from './Skills';
+import Projects from './Projects';
+import Resume from './Resume';
 
 function Copyright() {
   return (
@@ -121,6 +127,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+  
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box p={3}>
+            {children}
+          </Box>
+        )}
+      </div>
+    );
+  }
+
+
 export default function Dashboard() {
   const classes = useStyles();
 
@@ -172,15 +200,36 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List>
+            <MainListItems/>
+        </List>
         <Divider />
-        <List>{secondaryListItems}</List>
+        <List>
+            <SecondaryListItems/>
+        </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-                {mainTab.page}
+            <TabPanel value={mainTab.page} index={0}>
+                <Overview/>
+            </TabPanel>
+            <TabPanel value={mainTab.page} index={1}>
+                <Experiences/>
+            </TabPanel>
+            <TabPanel value={mainTab.page} index={2}>
+                <Formations/>
+            </TabPanel>
+            <TabPanel value={mainTab.page} index={3}>
+                <Skills/>
+            </TabPanel>
+            <TabPanel value={mainTab.page} index={4}>
+                <Projects/>
+            </TabPanel>
+            <TabPanel value={mainTab.page} index={5}>
+                <Resume/>
+            </TabPanel>
           </Grid>
           <Box pt={4}>
             <Copyright />

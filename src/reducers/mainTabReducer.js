@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const mainTabReducer = createSlice({
     name: 'mainTab',
     initialState: {
-        page : 1
+        page : 0
     },
     reducers: {
         update: (state, action) => {
